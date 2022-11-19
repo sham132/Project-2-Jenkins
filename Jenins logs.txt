@@ -1,0 +1,230 @@
+
+
+
+Started by user Ehtasham Ul Haq
+Replayed #87
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/2nd project
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/2nd project/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Romeh/spring-boot-sample-app.git # timeout=10
+Fetching upstream changes from https://github.com/Romeh/spring-boot-sample-app.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.25.1'
+ > git fetch --tags --force --progress -- https://github.com/Romeh/spring-boot-sample-app.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 6f4168d091228891e74d3a4894acec38b9008f77 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 6f4168d091228891e74d3a4894acec38b9008f77 # timeout=10
+Commit message: "Updating to latest spring boot 2 with latest spring cloud version  , latest version for lombok , object mapper, spring AOP , spring retry , maven and some code cleanup and pom.xml structuring"
+ > git rev-list --no-walk 6f4168d091228891e74d3a4894acec38b9008f77 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withCredentials
+Masking supported pattern matches of $dockerhub or $dockerhub_PSW
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (SCM)
+[Pipeline] git
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/2nd project/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/webdevprashant/jenkins-training-CI-CD-Day6.git # timeout=10
+Fetching upstream changes from https://github.com/webdevprashant/jenkins-training-CI-CD-Day6.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.25.1'
+ > git fetch --tags --force --progress -- https://github.com/webdevprashant/jenkins-training-CI-CD-Day6.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 5f5697602b186be93408c015cbb0471dc3422f38 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 5f5697602b186be93408c015cbb0471dc3422f38 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D master # timeout=10
+ > git checkout -b master 5f5697602b186be93408c015cbb0471dc3422f38 # timeout=10
+Commit message: "Delete webappsvc.yml"
+ > git rev-list --no-walk 5f5697602b186be93408c015cbb0471dc3422f38 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build by Maven)
+[Pipeline] withMaven
+[withMaven] Options: []
+[withMaven] Available options: 
+[withMaven] using JDK installation provided by the build agent
+[withMaven] using Maven installation 'Maven'
+[Pipeline] {
+[Pipeline] sh
++ mvn package -Dmaven.test.skip=true
+----- withMaven Wrapper script -----
+Picked up JAVA_TOOL_OPTIONS: -Dmaven.ext.class.path="/var/lib/jenkins/workspace/2nd project@tmp/withMavend26007a3/pipeline-maven-spy.jar" -Dorg.jenkinsci.plugins.pipeline.maven.reportsFolder="/var/lib/jenkins/workspace/2nd project@tmp/withMavend26007a3" 
+Apache Maven 3.8.6 (84538c9988a25aec085021c365c560670ad80f63)
+Maven home: /var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallation/Maven
+Java version: 11.0.17, vendor: Ubuntu, runtime: /usr/lib/jvm/java-11-openjdk-amd64
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "5.4.0-126-generic", arch: "amd64", family: "unix"
+[INFO] [jenkins-event-spy] Generate /var/lib/jenkins/workspace/2nd project@tmp/withMavend26007a3/maven-spy-20221116-061720-4719295696600621891248.log.tmp ...
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------------< com.mt:java-web-app >-------------------------
+[INFO] Building Maven Web Application 1.0
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ java-web-app ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:compile (default-compile) @ java-web-app ---
+[INFO] Compiling 2 source files to /var/lib/jenkins/workspace/2nd project/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ java-web-app ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:testCompile (default-testCompile) @ java-web-app ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ java-web-app ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-war-plugin:2.2:war (default-war) @ java-web-app ---
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.thoughtworks.xstream.core.util.Fields (file:/var/lib/jenkins/.m2/repository/com/thoughtworks/xstream/xstream/1.3.1/xstream-1.3.1.jar) to field java.util.Properties.defaults
+WARNING: Please consider reporting this to the maintainers of com.thoughtworks.xstream.core.util.Fields
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+[INFO] Packaging webapp
+[INFO] Assembling webapp [java-web-app] in [/var/lib/jenkins/workspace/2nd project/target/java-web-app-1.0]
+[INFO] Processing war project
+[INFO] Copying webapp resources [/var/lib/jenkins/workspace/2nd project/src/main/webapp]
+[INFO] Webapp assembled in [110 msecs]
+[INFO] Building war: /var/lib/jenkins/workspace/2nd project/target/java-web-app-1.0.war
+[INFO] WEB-INF/web.xml already added, skipping
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.275 s
+[INFO] Finished at: 2022-11-16T06:17:23Z
+[INFO] ------------------------------------------------------------------------
+[INFO] [jenkins-event-spy] Generated /var/lib/jenkins/workspace/2nd project@tmp/withMavend26007a3/maven-spy-20221116-061720-4719295696600621891248.log
+[Pipeline] }
+[withMaven] artifactsPublisher - Archive artifact pom.xml under com/mt/java-web-app/1.0/java-web-app-1.0.pom
+[withMaven] artifactsPublisher - Archive artifact target/java-web-app-1.0.war under com/mt/java-web-app/1.0/java-web-app-1.0.war
+[withMaven] junitPublisher - Archive test results for Maven artifact com.mt:java-web-app:war:1.0 generated by maven-surefire-plugin:test (default-test): target/surefire-reports/*.xml
+[withMaven] junitPublisher - Jenkins JUnit Attachments Plugin not found, can't publish test attachments.
+[withMaven] junitPublisher - Jenkins JUnit Flaky Test Handler Plugin not found, can't publish JUnit flaky tests reports.
+Recording test results
+No test report files were found. Configuration error?
+None of the test reports contained any result
+[withMaven] Jenkins FindBugs Plugin not found, don't display org.codehaus.mojo:findbugs-maven-plugin:findbugs results in pipeline screen.
+[withMaven] jgivenPublisher - Jenkins JGiven Plugin not found, do not archive jgiven reports.
+[withMaven] Jenkins Task Scanner Plugin not found, don't display results of source code scanning for 'TODO' and 'FIXME' in pipeline screen.
+[withMaven] Publishers: Pipeline Graph Publisher: 12 ms, Generated Artifacts Publisher: 45 ms, Junit Publisher: 13 ms, Findbugs Publisher: 2 ms, JGiven Publisher: 2 ms, Open Task Scanner Publisher: 2 ms
+[Pipeline] // withMaven
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build docker image)
+[Pipeline] sh
++ docker build -t pmd1234/ehtashamdev:94 .
+Sending build context to Docker daemon  25.37MB
+
+Step 1/2 : FROM tomcat:8.0.20-jre8
+ ---> e88a065848be
+Step 2/2 : COPY target/java-web-app*.war /usr/local/tomcat/webapps/java-web-app.war
+ ---> f1be48b3e049
+Successfully built f1be48b3e049
+Successfully tagged pmd1234/ehtashamdev:94
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Login)
+[Pipeline] echo
+Login Begin ...
+[Pipeline] sh
++ echo Ehtasham
+Ehtasham
+[Pipeline] sh
++ docker login -u pmd1234 -p dckr_pat_****
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /var/lib/jenkins/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Pushing Code to Docker Hub)
+[Pipeline] echo
+Pushing to DockerHub Begins ...
+[Pipeline] sh
++ docker push pmd1234/ehtashamdev:94
+The push refers to repository [docker.io/pmd1234/ehtashamdev]
+f9d382a9b788: Preparing
+5f70bf18a086: Preparing
+5f70bf18a086: Preparing
+3d7c7b65abb2: Preparing
+5f70bf18a086: Preparing
+5f70bf18a086: Preparing
+5f70bf18a086: Preparing
+c8252e277764: Preparing
+5f70bf18a086: Preparing
+4e1f1c224818: Preparing
+5f70bf18a086: Preparing
+5f70bf18a086: Preparing
+0d059c7d8519: Preparing
+0e413cd50c1e: Preparing
+5f70bf18a086: Preparing
+5f70bf18a086: Preparing
+5f70bf18a086: Preparing
+3770fb9237e7: Preparing
+e3e44bf3000f: Preparing
+5f70bf18a086: Preparing
+fd97e4a10f39: Preparing
+5f70bf18a086: Preparing
+0d059c7d8519: Waiting
+0e413cd50c1e: Waiting
+3770fb9237e7: Waiting
+e3e44bf3000f: Waiting
+fd97e4a10f39: Waiting
+5f70bf18a086: Layer already exists
+4e1f1c224818: Layer already exists
+c8252e277764: Layer already exists
+3d7c7b65abb2: Layer already exists
+0d059c7d8519: Layer already exists
+0e413cd50c1e: Layer already exists
+3770fb9237e7: Layer already exists
+e3e44bf3000f: Layer already exists
+fd97e4a10f39: Layer already exists
+f9d382a9b788: Pushed
+94: digest: sha256:2e0f960031ef5518e434084d67862b0a4bbe362acc80d4ac1ac3e617256010c8 size: 4890
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy Java in QA/Test Env)
+[Pipeline] sh
++ docker rm -f pmd1234
+pmd1234
+[Pipeline] sh
++ docker run -d -p 1223:8080 --name pmd1234 pmd1234/ehtashamdev:94
+30d1467617b96d7545b736a9f711f8398cf5f32156a0453da8be52b57062b948
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
